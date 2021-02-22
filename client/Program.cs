@@ -18,6 +18,8 @@ namespace client
             song.Label = ReadFieldValue("Label");
             song.SubmittedBy = ReadFieldValue("Submitted by");
             song.SubmissionDate = ReadFieldValue("Submission date");
+
+            Request songRequest = new Request("create", song);
         }
 
         static private string ReadFieldValue(string name)
