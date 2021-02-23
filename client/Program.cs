@@ -1,10 +1,15 @@
 ﻿using System;
 using Newtonsoft.Json;
+using client.protocol;
+using NetCoreServer;
+using System.Security.Authentication;
+using System.Security.Cryptography.X509Certificates;
 
 namespace client
 {
     class Program
     {
+        static private Client client;
         static private void CreateNewSong()
         {
             Song song = new Song();
@@ -20,6 +25,16 @@ namespace client
             song.SubmissionDate = ReadFieldValue("Submission date");
 
             Request songRequest = new Request("create", song);
+            Response<int> songResponse = client.SendRequest<int>(songRequest);
+
+            if (songResponse.Success)
+            {
+                Console.Write("ID: {0}", songResponse.Data);
+            }
+            else
+            {
+                Console.Write(songResponse.ErrorMessage);
+            }
         }
 
         static private string ReadFieldValue(string name)
@@ -37,6 +52,11 @@ namespace client
 
         static void Main(string[] args)
         {
+            string address = "127.0.0.1";
+            int port = 1111;
+            SslContext context = new SslContext(SslProtocols.Tls12, new X509Certificate2("client.pfx"));
+            client = new Client(context, address, port);
+
             while (true) {
                 Console.Write("Command> ");
                 string command = Console.ReadLine();
