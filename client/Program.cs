@@ -1,5 +1,4 @@
 ﻿using System;
-using Newtonsoft.Json;
 using client.protocol;
 using NetCoreServer;
 using System.Security.Authentication;
