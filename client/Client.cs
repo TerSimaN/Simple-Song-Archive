@@ -31,7 +31,7 @@ namespace client
             int responseSize = (int)sslClient.Receive(buffer);
             if (responseSize == 0)
             {
-                throw new Exception("Error!");
+                throw new Exception("Error! Invalid response!");
             }
 
             byte[] serializedResponse = new byte[responseSize];
