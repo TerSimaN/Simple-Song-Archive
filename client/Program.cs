@@ -54,7 +54,7 @@ namespace client
         {
             string address = "127.0.0.1";
             int port = 1111;
-            SslContext context = new SslContext(SslProtocols.Tls12, new X509Certificate2("../../SSL_Certs_Out/client.pfx"));
+            SslContext context = new SslContext(SslProtocols.Tls12, new X509Certificate2("../ssl_certs/client.pfx"));
             client = new Client(context, address, port);
 
             while (true) {

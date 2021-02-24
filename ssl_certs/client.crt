@@ -1,0 +1,48 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 2 (0x2)
+        Signature Algorithm: ecdsa-with-SHA256
+        Issuer: O=Created by Generate-Certs, OU=Created by Generate-Certs, CN=Generate-Certs Root CA
+        Validity
+            Not Before: Feb 23 20:39:38 2021 GMT
+            Not After : Feb 21 20:39:38 2031 GMT
+        Subject: O=Created by Generate-Certs, OU=Created by Generate-Certs, CN=localhost
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub:
+                    04:2c:dc:8c:ea:44:28:9b:c5:40:ea:fb:27:43:95:
+                    a0:bf:d9:2f:4b:93:26:78:b1:ab:f5:52:61:e1:f9:
+                    53:7e:30:67:c4:c2:b3:f5:a1:b5:d2:df:25:9e:91:
+                    24:e7:99:f3:10:51:81:c1:6f:d7:9d:2b:73:35:96:
+                    e3:ad:ae:21:eb
+                ASN1 OID: prime256v1
+                NIST CURVE: P-256
+        X509v3 extensions:
+            X509v3 Subject Alternative Name: 
+                DNS:localhost
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            X509v3 Key Usage: 
+                Digital Signature, Non Repudiation, Key Encipherment
+            X509v3 Subject Key Identifier: 
+                94:53:9E:66:97:51:6B:D6:AC:B9:92:EB:28:33:F4:F9:80:59:09:75
+    Signature Algorithm: ecdsa-with-SHA256
+         30:46:02:21:00:8b:a8:c5:04:35:5f:e8:24:20:32:12:9b:89:
+         57:55:fd:07:d1:83:d7:07:3e:8c:c4:35:e4:b1:78:29:a8:61:
+         2c:02:21:00:ef:58:81:a8:48:60:14:fd:24:b8:00:c6:33:e5:
+         c4:f1:c7:df:7c:90:59:12:9d:bb:26:be:8d:26:5c:86:95:6b
+-----BEGIN CERTIFICATE-----
+MIICBDCCAamgAwIBAgIBAjAKBggqhkjOPQQDAjBpMSIwIAYDVQQKDBlDcmVhdGVk
+IGJ5IEdlbmVyYXRlLUNlcnRzMSIwIAYDVQQLDBlDcmVhdGVkIGJ5IEdlbmVyYXRl
+LUNlcnRzMR8wHQYDVQQDDBZHZW5lcmF0ZS1DZXJ0cyBSb290IENBMB4XDTIxMDIy
+MzIwMzkzOFoXDTMxMDIyMTIwMzkzOFowXDEiMCAGA1UECgwZQ3JlYXRlZCBieSBH
+ZW5lcmF0ZS1DZXJ0czEiMCAGA1UECwwZQ3JlYXRlZCBieSBHZW5lcmF0ZS1DZXJ0
+czESMBAGA1UEAwwJbG9jYWxob3N0MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE
+LNyM6kQom8VA6vsnQ5Wgv9kvS5MmeLGr9VJh4flTfjBnxMKz9aG10t8lnpEk55nz
+EFGBwW/XnStzNZbjra4h66NPME0wFAYDVR0RBA0wC4IJbG9jYWxob3N0MAkGA1Ud
+EwQCMAAwCwYDVR0PBAQDAgXgMB0GA1UdDgQWBBSUU55ml1Fr1qy5kusoM/T5gFkJ
+dTAKBggqhkjOPQQDAgNJADBGAiEAi6jFBDVf6CQgMhKbiVdV/QfRg9cHPozENeSx
+eCmoYSwCIQDvWIGoSGAU/SS4AMYz5cTxx998kFkSnbsmvo0mXIaVaw==
+-----END CERTIFICATE-----
