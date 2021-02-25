@@ -40,7 +40,7 @@ namespace server
                         break;
                     
                     default:
-                        Console.WriteLine("Unknown command!");
+                        Console.WriteLine("Invalid command!");
                         break;
                 }
 

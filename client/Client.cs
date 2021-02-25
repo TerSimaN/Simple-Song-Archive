@@ -14,7 +14,7 @@ namespace client
         {
             this.sslClient = new SslClient(context, address, port);
             this.serializer = new Serializer();
-            this.sslClient.ConnectAsync();
+            this.sslClient.Connect();
         }
 
         public Response<DataType> SendRequest<DataType>(Request request)
@@ -27,17 +27,23 @@ namespace client
             byte[] serializedRequest = serializer.SerializeRequest(request);
             sslClient.Send(serializedRequest);
 
-            byte[] buffer = new byte[64*1024];
-            int responseSize = (int)sslClient.Receive(buffer);
-            if (responseSize == 0)
+            byte[] buffer = new byte[2048];
+            byte[] response = new byte[16 * 1024];
+            int responseOffset = 0;
+            int bytes = -1;
+
+            do
             {
-                throw new Exception("Error! Invalid response!");
-            }
+                bytes = (int)sslClient.Receive(buffer);
 
-            byte[] serializedResponse = new byte[responseSize];
-            Buffer.BlockCopy(buffer, 0, serializedResponse, 0, responseSize);
+                if (bytes > 0)
+                {
+                    Buffer.BlockCopy(buffer, 0, response, responseOffset, bytes);
+                    responseOffset += (bytes - 1);
+                }
+            } while (bytes != 0);
 
-            return serializer.UnserializeResponse<DataType>(serializedResponse);
+            return this.serializer.UnserializeResponse<DataType>(response);
         }
     }
 }

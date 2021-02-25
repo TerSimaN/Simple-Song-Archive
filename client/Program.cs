@@ -1,8 +1,8 @@
 ﻿using System;
-using client.protocol;
-using NetCoreServer;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
+using NetCoreServer;
+using client.protocol;
 
 namespace client
 {
@@ -24,15 +24,23 @@ namespace client
             song.SubmissionDate = ReadFieldValue("Submission date");
 
             Request songRequest = new Request("create", song);
-            Response<int> songResponse = client.SendRequest<int>(songRequest);
 
-            if (songResponse.Success)
+            try
             {
-                Console.Write("ID: {0}", songResponse.Data);
+                Response<int> songResponse = client.SendRequest<int>(songRequest);
+
+                if (songResponse.Success)
+                {
+                    Console.WriteLine("Created song with ID: {0}", songResponse.Data);
+                }
+                else
+                {
+                    Console.WriteLine("Error: {0}", songResponse.ErrorMessage);
+                }
             }
-            else
+            catch (Exception exception)
             {
-                Console.Write(songResponse.ErrorMessage);
+                Console.WriteLine(exception.Message);
             }
         }
 
@@ -43,7 +51,8 @@ namespace client
                 Console.Write("{0}: ", name);
                 string line = Console.ReadLine();
 
-                if (line.Length > 0) {
+                if (line.Length > 0)
+                {
                     return line;
                 }
             }
@@ -58,7 +67,8 @@ namespace client
 
             Console.WriteLine("Enter \"create\" to create new song or \"exit\" to exit.");
 
-            while (true) {
+            while (true)
+            {
                 Console.Write("Command> ");
                 string command = Console.ReadLine();
                 bool shouldExit = false;
@@ -71,17 +81,18 @@ namespace client
 
                     case "get":
                         break;
-                        
+
                     case "exit":
                         shouldExit = true;
                         break;
-                    
+
                     default:
-                        Console.WriteLine("Unknown command!");
+                        Console.WriteLine("Invalid command!");
                         break;
                 }
 
-                if (shouldExit) {
+                if (shouldExit)
+                {
                     break;
                 }
             }

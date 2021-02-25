@@ -38,9 +38,9 @@ namespace client.protocol
 
     public Response<T> UnserializeResponse<T>(byte[] message)
     {
-      if (BitConverter.ToChar(message, 0) != 0x0B)
+      if (message.Length > 5 && message[0] != 0x0B)
       {
-        throw new Exception("Error! Unknown message!");
+        throw new Exception("Client Error! Invalid response!");
       }
 
       UInt32 payloadLength = BitConverter.ToUInt32(message, 1);
