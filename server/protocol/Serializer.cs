@@ -8,7 +8,7 @@ namespace server.protocol
 {
     class Serializer
     {
-        public byte[] SerializeResponse(Response<byte[]> response)
+        public byte[] SerializeResponse(Response<int> response)
         {
             byte[] payload;
 
@@ -40,7 +40,7 @@ namespace server.protocol
         {
             if (BitConverter.ToChar(message, 0) != 0x0A)
             {
-                throw new Exception("Error! Unknown message!");
+                throw new Exception("Error! Unknown request!");
             }
 
             UInt32 payloadLength = BitConverter.ToUInt32(message, 1);

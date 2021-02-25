@@ -15,21 +15,27 @@ namespace server
             SslContext sslContext = new SslContext(SslProtocols.Tls12, new X509Certificate2("../ssl_certs/server.pfx"));
             
             server = new Server(sslContext, IPAddress.Any, port);
+
+            Console.Write("Server starting...");
             server.Start();
+            Console.WriteLine("Done!");
+
+            Console.WriteLine("Enter \"restart\" to restart the server or \"stop\" to stop the server.");
 
             while (true)
             {
-                Console.Write("Command> ");
                 string command = Console.ReadLine();
                 bool shouldExit = false;
 
                 switch (command)
                 {
-                    case "get":
-                        Console.WriteLine("Nothing to get!");
+                    case "restart":
+                        Console.Write("Server restarting...");
+                        server.Restart();
+                        Console.WriteLine("Done!");
                         break;
                         
-                    case "exit":
+                    case "stop":
                         shouldExit = true;
                         break;
                     
@@ -42,6 +48,10 @@ namespace server
                     break;
                 }
             }
+
+            Console.Write("Server stopping...");
+            server.Stop();
+            Console.WriteLine("Done!");
         }
     }
 }

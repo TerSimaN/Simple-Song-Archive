@@ -53,8 +53,10 @@ namespace client
         {
             string address = "127.0.0.1";
             int port = 1111;
-            SslContext context = new SslContext(SslProtocols.Tls12, new X509Certificate2("../ssl_certs/client.pfx"));
+            SslContext context = new SslContext(SslProtocols.Tls12, new X509Certificate2("../ssl_certs/client.pfx"), (sender, certificate, chain, sslPolicyErrors) => true);
             client = new Client(context, address, port);
+
+            Console.WriteLine("Enter \"create\" to create new song or \"exit\" to exit.");
 
             while (true) {
                 Console.Write("Command> ");
