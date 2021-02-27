@@ -7,7 +7,7 @@ namespace server
 {
     class Server : SslServer
     {
-        public Server(SslContext sslContext, IPAddress address, int port) : base(sslContext, address, port) {}
+        public Server(SslContext sslContext, IPAddress address, int port) : base(sslContext, address, port) { }
 
         protected override SslSession CreateSession() { return new Session(this); }
 

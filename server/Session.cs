@@ -11,7 +11,7 @@ namespace server
         private Serializer serializer = new Serializer();
         private Request request;
 
-        public Session(SslServer sslServer) : base(sslServer) {}
+        public Session(SslServer sslServer) : base(sslServer) { }
 
         protected override void OnConnected()
         {

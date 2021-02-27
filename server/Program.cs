@@ -13,7 +13,7 @@ namespace server
         {
             int port = 1111;
             SslContext sslContext = new SslContext(SslProtocols.Tls12, new X509Certificate2("../ssl_certs/server.pfx"));
-            
+
             server = new Server(sslContext, IPAddress.Any, port);
 
             Console.Write("Server starting...");
@@ -34,17 +34,18 @@ namespace server
                         server.Restart();
                         Console.WriteLine("Done!");
                         break;
-                        
+
                     case "stop":
                         shouldExit = true;
                         break;
-                    
+
                     default:
                         Console.WriteLine("Invalid command!");
                         break;
                 }
 
-                if (shouldExit) {
+                if (shouldExit)
+                {
                     break;
                 }
             }

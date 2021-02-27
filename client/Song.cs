@@ -1,5 +1,7 @@
-namespace client {
-    class Song {
+namespace client
+{
+    class Song
+    {
         public string Name;
         public string Genre;
         public string Artist;
