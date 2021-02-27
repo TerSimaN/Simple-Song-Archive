@@ -33,7 +33,7 @@ namespace server
             Response<int> response = new Response<int>();
             response.Success = true;
             response.Data = 12;
-            response.Error_code = 1;
+            response.Error_code = 404;
             response.Error_Message = "Error Message!";
             this.Send(serializer.SerializeResponse(response));
         }

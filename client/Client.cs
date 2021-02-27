@@ -17,6 +17,11 @@ namespace client
             this.sslClient.Connect();
         }
 
+        public void ReConnect()
+        {
+            this.sslClient.Reconnect();
+        }
+
         public Response<DataType> SendRequest<DataType>(Request request)
         {
             if (!this.sslClient.IsConnected)
@@ -40,6 +45,10 @@ namespace client
                 {
                     Buffer.BlockCopy(buffer, 0, response, responseOffset, bytes);
                     responseOffset += (bytes - 1);
+                }
+                else
+                {
+                    throw new Exception("Error! Nothing was received!");
                 }
             } while (bytes != 0);
 

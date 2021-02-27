@@ -77,6 +77,7 @@ namespace client
                 {
                     case "create":
                         CreateNewSong();
+                        client.ReConnect();
                         break;
 
                     case "get":
