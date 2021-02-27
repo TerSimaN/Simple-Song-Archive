@@ -14,9 +14,9 @@ namespace server.protocol
 
             using (MemoryStream memoryStream = new MemoryStream())
             {
-                UnicodeEncoding encoding = new UnicodeEncoding();
+                UnicodeEncoding unicodeEncoding = new UnicodeEncoding();
                 string serializedResponse = JsonConvert.SerializeObject(response);
-                byte[] encodedResponse = encoding.GetBytes(serializedResponse);
+                byte[] encodedResponse = unicodeEncoding.GetBytes(serializedResponse);
 
                 GZipStream gZipStream = new GZipStream(memoryStream, CompressionMode.Compress);
                 gZipStream.Write(encodedResponse, 0, encodedResponse.Length);
