@@ -42,7 +42,7 @@ namespace client
             }
             else
             {
-                throw new Exception("Error! Nothing was received!");
+                throw new Exception("Error! Invalid response!");
             }
 
             return this.serializer.UnserializeResponse<DataType>(response);
