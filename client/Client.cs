@@ -34,23 +34,16 @@ namespace client
 
             byte[] buffer = new byte[2048];
             byte[] response = new byte[16 * 1024];
-            int responseOffset = 0;
             int bytes = (int)sslClient.Receive(buffer);
 
-            Console.WriteLine("Bytes received: {0}", bytes);
-
-            do
+            if (bytes > 0)
             {
-                if (bytes > 0)
-                {
-                    Buffer.BlockCopy(buffer, 0, response, responseOffset, bytes);
-                    responseOffset += (--bytes);
-                }
-                else
-                {
-                    throw new Exception("Error! Nothing was received!");
-                }
-            } while (bytes != 0);
+                Buffer.BlockCopy(buffer, 0, response, 0, bytes);
+            }
+            else
+            {
+                throw new Exception("Error! Nothing was received!");
+            }
 
             return this.serializer.UnserializeResponse<DataType>(response);
         }

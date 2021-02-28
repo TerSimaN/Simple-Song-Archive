@@ -51,12 +51,20 @@ namespace client.protocol
 
             using (MemoryStream memoryStream = new MemoryStream())
             {
+                byte[] decompressedPayload = new byte[4096];
+                memoryStream.Write(payload, 0, (int)payloadLength);
+                memoryStream.Seek(0, SeekOrigin.Begin);
+
                 GZipStream gZipStream = new GZipStream(memoryStream, CompressionMode.Decompress);
-                gZipStream.Write(payload, 0, payload.Length);
+                int bytesRead = -1;
+
+                do {
+                    bytesRead = gZipStream.Read(decompressedPayload);
+                } while (bytesRead != 0);
+
                 gZipStream.Close();
                 memoryStream.Close();
 
-                byte[] decompressedPayload = memoryStream.ToArray();
                 UnicodeEncoding unicodeEncoding = new UnicodeEncoding();
 
                 string serializedResponse = unicodeEncoding.GetString(decompressedPayload);

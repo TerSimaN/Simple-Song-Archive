@@ -23,18 +23,6 @@ namespace client
             song.SubmittedBy = ReadFieldValue("Submitted by");
             song.SubmissionDate = ReadFieldValue("Submission date");
 
-            //For testing purposes only:
-            /* song.Name = "Name";
-            song.Genre = "Genre";
-            song.Artist = "Artist";
-            song.Lyricist = "Lyricist";
-            song.Year = 1024;
-            song.Album = "Album";
-            song.Length = "Length";
-            song.Label = "Label";
-            song.SubmittedBy = "Submitted by";
-            song.SubmissionDate = "Submission date"; */
-
             Request songRequest = new Request("create", song);
 
             try
@@ -90,10 +78,6 @@ namespace client
                     case "create":
                         CreateNewSong();
                         client.ReConnect();
-                        break;
-
-                    case "get":
-                        Console.WriteLine("Not yet implemented!");
                         break;
 
                     case "exit":
