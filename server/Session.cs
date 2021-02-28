@@ -10,6 +10,8 @@ namespace server
     {
         private Serializer serializer = new Serializer();
         private Request request;
+        private bool requestIsSuccessful = false;
+        private Random random = new Random();
 
         public Session(SslServer sslServer) : base(sslServer) { }
 
@@ -25,12 +27,14 @@ namespace server
 
         protected override void OnReceived(byte[] buffer, long offset, long size)
         {
-            string message = Encoding.UTF8.GetString(buffer, (int)offset, (int)size);
-            Console.WriteLine("Incoming: {0}", message);
+            /* string message = Encoding.UTF8.GetString(buffer, (int)offset, (int)size);
+            Console.WriteLine("Incoming: {0}", message); */
 
             try
             {
                 request = serializer.UnserializeRequest(buffer);
+                requestIsSuccessful = true;
+                Console.WriteLine("Incoming: {0}", request.Data);
             }
             catch (Exception exception)
             {
@@ -38,10 +42,17 @@ namespace server
             }
 
             Response<int> response = new Response<int>();
-            response.Success = true;
-            response.Data = 12;
-            response.Error_code = 404;
-            response.Error_Message = "Error Message!";
+            if (requestIsSuccessful)
+            {
+                response.Success = true;
+                response.Data = random.Next(0, 1024);
+            }
+            else
+            {
+                response.ErrorCode = 404;
+                response.ErrorMessage = "No message was received!";
+            }
+
             try
             {
                 this.Send(serializer.SerializeResponse(response));

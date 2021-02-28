@@ -9,10 +9,10 @@ namespace server.protocol
         public bool Success;
 
         [JsonProperty("error_code")]
-        public uint Error_code;
+        public uint ErrorCode;
 
         [JsonProperty("error_message")]
-        public string Error_Message;
+        public string ErrorMessage;
 
         [JsonProperty("data")]
         public DataType Data;
