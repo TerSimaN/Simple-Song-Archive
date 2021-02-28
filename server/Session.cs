@@ -27,9 +27,6 @@ namespace server
 
         protected override void OnReceived(byte[] buffer, long offset, long size)
         {
-            /* string message = Encoding.UTF8.GetString(buffer, (int)offset, (int)size);
-            Console.WriteLine("Incoming: {0}", message); */
-
             try
             {
                 request = serializer.UnserializeRequest(buffer);
