@@ -6,15 +6,15 @@ namespace client.protocol
     {
         [JsonRequired()]
         [JsonProperty("success")]
-        public bool Success;
+        public bool Success { get; set; }
 
         [JsonProperty("error_code")]
-        public uint ErrorCode;
+        public uint ErrorCode { get; set; }
 
         [JsonProperty("error_message")]
-        public string ErrorMessage;
+        public string ErrorMessage { get; set; }
 
         [JsonProperty("data")]
-        public DataType Data;
+        public DataType Data { get; set; }
     }
 }

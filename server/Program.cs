@@ -11,10 +11,9 @@ namespace server
         static private Server server;
         static void Main(string[] args)
         {
-            int port = 1111;
             SslContext sslContext = new SslContext(SslProtocols.Tls12, new X509Certificate2("../ssl_certs/server.pfx"));
 
-            server = new Server(sslContext, IPAddress.Any, port);
+            server = new Server(sslContext, IPAddress.Loopback, 1111);
 
             Console.Write("Server starting...");
             server.Start();

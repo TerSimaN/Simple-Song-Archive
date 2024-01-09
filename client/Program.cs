@@ -11,18 +11,19 @@ namespace client
         static private Client client;
         static private void CreateNewSong()
         {
-            Song song = new Song();
-            song.Name = ReadFieldValue("Name");
-            song.Genre = ReadFieldValue("Genre");
-            song.Artist = ReadFieldValue("Artist");
-            song.Lyricist = ReadFieldValue("Lyricist");
-            song.Year = UInt16.Parse(ReadFieldValue("Year"));
-            song.Album = ReadFieldValue("Album");
-            song.Length = ReadFieldValue("Length");
-            song.Label = ReadFieldValue("Label");
-            song.SubmittedBy = ReadFieldValue("Submitted by");
-            song.SubmissionDate = ReadFieldValue("Submission date");
-
+            Song song = new Song()
+            {
+                Name = ReadFieldValue("Name"),
+                Genre = ReadFieldValue("Genre"),
+                Artist = ReadFieldValue("Artist"),
+                Lyricist = ReadFieldValue("Lyricist"),
+                Year = UInt16.Parse(ReadFieldValue("Year")),
+                Album = ReadFieldValue("Album"),
+                Length = ReadFieldValue("Length"),
+                Label = ReadFieldValue("Label"),
+                SubmittedBy = ReadFieldValue("Submitted by"),
+                SubmissionDate = ReadFieldValue("Submission date"),
+            };
             Request songRequest = new Request("create", song);
 
             try
@@ -60,10 +61,8 @@ namespace client
 
         static void Main(string[] args)
         {
-            string address = "127.0.0.1";
-            int port = 1111;
             SslContext context = new SslContext(SslProtocols.Tls12, new X509Certificate2("../ssl_certs/client.pfx"), (sender, certificate, chain, sslPolicyErrors) => true);
-            client = new Client(context, address, port);
+            client = new Client(context, IPAddress.Loopback, 1111);
 
             Console.WriteLine("Enter \"create\" to create new song or \"exit\" to exit.");
 
