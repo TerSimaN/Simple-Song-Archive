@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 using NetCoreServer;
@@ -17,7 +18,7 @@ namespace client
                 Genre = ReadFieldValue("Genre"),
                 Artist = ReadFieldValue("Artist"),
                 Lyricist = ReadFieldValue("Lyricist"),
-                Year = UInt16.Parse(ReadFieldValue("Year")),
+                Year = ushort.Parse(ReadFieldValue("Year")),
                 Album = ReadFieldValue("Album"),
                 Length = ReadFieldValue("Length"),
                 Label = ReadFieldValue("Label"),

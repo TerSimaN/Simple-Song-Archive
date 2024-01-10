@@ -1,4 +1,5 @@
 using System;
+using System.Net;
 using Buffer = System.Buffer;
 using NetCoreServer;
 using client.protocol;
@@ -10,7 +11,7 @@ namespace client
         private Serializer serializer;
         private SslClient sslClient;
 
-        public Client(SslContext context, string address, int port)
+        public Client(SslContext context, IPAddress address, int port)
         {
             this.sslClient = new SslClient(context, address, port);
             this.serializer = new Serializer();

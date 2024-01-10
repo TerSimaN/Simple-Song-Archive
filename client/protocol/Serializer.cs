@@ -43,7 +43,7 @@ namespace client.protocol
                 throw new Exception("Client Error! Invalid response!");
             }
 
-            UInt32 payloadLength = BitConverter.ToUInt32(message, 1);
+            uint payloadLength = BitConverter.ToUInt32(message, 1);
             byte[] payload = new byte[payloadLength];
             Buffer.BlockCopy(message, 5, payload, 0, (int)payloadLength);
 
